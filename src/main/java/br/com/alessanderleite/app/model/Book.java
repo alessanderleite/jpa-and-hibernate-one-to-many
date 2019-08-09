@@ -1,11 +1,14 @@
 package br.com.alessanderleite.app.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Book {
@@ -16,8 +19,9 @@ public class Book {
 	
 	private String name;
 	
-	@ManyToOne
-	@JoinColumn
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "book_Category_id", referencedColumnName = "id", nullable = false, unique = true)
+	@JsonIgnore
 	private BookCategory bookCatetory;
 
 	public Book() {}
