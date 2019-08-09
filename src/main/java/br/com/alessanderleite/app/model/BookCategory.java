@@ -4,12 +4,15 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "book_category")
 public class BookCategory {
 	
 	@Id
@@ -18,7 +21,7 @@ public class BookCategory {
 	
 	private String name;
 	
-	@OneToMany(mappedBy = "bookCategory", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "bookCatetory", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Book> books;
 	
 	public BookCategory() {}
